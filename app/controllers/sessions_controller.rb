@@ -1,29 +1,31 @@
 class SessionsController < ApplicationController
 
-  def index
-
-  end
-
   def new
-    @user = User.new
   end
 
   def create
-
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      puts "--------------LOGGED IN-----------------"
+      puts session[:user_id]
+      # redirect "/users/#{user.id}"
+    else
+      flash[:notice] = @user.errors.full_message
+      render 'login'
+    end
   end
 
-  def show
-
+  def destroy
+    session.clear
+    redirect_to new_user_path
   end
 
-  def update
-
-  end
 
   private
 
-    def sessions_params
-
-    end
+    # def sessions_params
+    #   params.require(:user).permit(:email, :username, :password)
+    # end
 
 end

@@ -12,11 +12,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by(id: session[:user])
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   def authorized?(user)
     logged_in? && current_user == user
   end
-  
+
 end

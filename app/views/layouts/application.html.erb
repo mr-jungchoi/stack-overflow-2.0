@@ -26,7 +26,8 @@
     <%if logged_in?%>
       <ul class="nav navbar-nav navbar-right">
         <li id="user"><a href="/users/<%=current_user.id%>"><%=current_user.username%></a> </li>
-        <li><a><form action="/sessions" method="post">
+        <li><a><form action="/logout" method="post">
+          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
           <input type="hidden" name="_method" value="delete">
           <input class="btn btn-link" type="submit" value="Log out">
         </form></a></li>
@@ -35,7 +36,7 @@
     <%else%>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-        <li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
       </ul>
     <%end%>
     </div>
