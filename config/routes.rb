@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   resources :users
 
   resources :questions do
-    resources :answers
-    resources :comments
+    resources :answers, only: :create
+    resources :comments, only: :create, :update, :destroy
   end
 
-  resources :answers do
-    resources :comments
+  resources :answers, except: :show do
+    resources :comments, only: :create, :update, :destroy
   end
 
   post '/votes' => 'votes#post'
