@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   post '/sessions' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
+  root 'questions#index'
 end

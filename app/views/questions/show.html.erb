@@ -1,0 +1,23 @@
+<div class="container">
+  <h2><%= @question.title %></h2>
+  <p>Submitted by <%= @question.author.username %></p><br />
+  <p><%= @question.description %>
+
+    <p id="<%=@question.id%>" class="new-answer"><a href="/questions/<%= @question.id %>/answers/new">Answer this question</a></p>
+
+
+    <p><a href="/questions/<%= @question.id %>/comments/new">Add a comment to question </a></p>
+
+
+
+
+    <p>Best answer:</p>
+
+
+      <p>Comments</p>
+
+
+
+    <p id="answer-header"><strong><u>Answers</u></strong></p>
+
+</div>
