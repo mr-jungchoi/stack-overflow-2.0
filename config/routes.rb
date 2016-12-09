@@ -1,3 +1,18 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users
+
+  resources :questions do
+    resources :answers
+    resources :comments
+  end
+
+  resources :answers do
+    resources :comments
+  end
+
+  post '/votes' => 'votes#post'
+
+  get '/login' => 'sessions#new'
+  post '/sessions' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
 end

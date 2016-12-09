@@ -6,5 +6,4 @@ class Question < ApplicationRecord
   # has_one :best_answer, class_name: Answer
 
   validates_presence_of :title, :description
-
 end
