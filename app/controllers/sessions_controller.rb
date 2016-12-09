@@ -19,12 +19,4 @@ class SessionsController < ApplicationController
     session.clear
     redirect_to new_user_path
   end
-
-
-  private
-
-    # def sessions_params
-    #   params.require(:user).permit(:email, :username, :password)
-    # end
-
 end
