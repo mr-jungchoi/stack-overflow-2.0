@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>StackOverflow20</title>
+    <title>StackOverflow2.0</title>
     <%= csrf_meta_tags %>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">StackOverFlow</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <%if logged_in?%>
+            <li id="nav-question"><a href="/questions/new">Ask a question</a></li>
+          <%end%>
+        </ul>
+      <%if logged_in?%>
+        <ul class="nav navbar-nav navbar-right">
+          <li id="user"><a href="/users/<%=current_user.id%>"><%=current_user.username%></a> </li>
+          <li><a><form action="/logout" method="post">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input type="hidden" name="_method" value="delete">
+            <input class="btn btn-link" type="submit" value="Log out">
+          </form></a></li>
+
+        </ul>
+      <%else%>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+        </ul>
+      <%end%>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

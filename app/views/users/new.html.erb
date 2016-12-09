@@ -1,0 +1,15 @@
+<div class ="register container">
+  <h3>Create an Account</h3>
+  <% if flash[:notice] %>
+    <p style="color: green;"><%= flash[:notice] %></p>
+  <% end %>
+
+  <form action="/users" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input type="text" name="user[username]" placeholder="username">
+    <input type="email" name="user[email]" placeholder="email">
+    <input type="password" name="user[password]" placeholder="password">
+    <input class="btn btn-primary" type="submit" value="Register">
+  </form>
+
+</div>

@@ -1,0 +1,14 @@
+<div class ="log-in container">
+  <h3>Log In </h3>
+  <% if flash[:notice] %>
+    <p style="color: green;"><%= flash[:notice] %></p>
+  <% end %>
+
+  <form action="/sessions" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input type="email" name="email" placeholder="email">
+    <input type="password" name="password" placeholder="password">
+    <input class="btn btn-primary" type="submit" value="Log In">
+  </form>
+
+</div>
