@@ -1,0 +1,40 @@
+<li>
+  <div class="answer">
+    <%= render partial: "votes", layout: false %>
+    <p><%= answer.text %></p>
+    <p><a href="/users/<%= answer.user.id %>"> - <%= answer.user.username %></a> <span class ="time-since-creation "> answered  <%= answer.time_since_creation  %> hours ago</span></p>
+    <% if current_user == @question.author %>
+    <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
+      <input type="hidden" name="_method" value="put">
+      <input type="submit" value="Mark as best answer">
+    </form>
+    <% end %>
+    <% if logged_in? %>
+    <p><a href="/questions/<%= answer.question_id %>/answers/<%= answer.id %>/comments/new">Add a comment to answer </a></p>
+    <% end %>
+    <br>
+    <% unless answer.comments.empty? %>
+      <div class="comments">
+        <p><strong><u>Comments of Answer</u></strong></p>
+        <br>
+        <ul>
+          <% answer.comments.each do |comment| %>
+            <div class="answer-comment">
+              <div class="comment-voting row" id="<%=answer.id%>">
+                <div class="col-md-1" id="<%=comment.id%>">
+                  <button class="comment-vote-up glyphicon glyphicon-triangle-top col-md-12"></button>
+                  <span class="points col-md-12"><%= comment.points %></span>
+                  <button class="comment-vote-down glyphicon glyphicon-triangle-bottom col-md-12"></button>
+                </div>
+              </div>
+              <li><%= comment.text %> - <a href="/users/<%=comment.commenter.id%>"><%= comment.commenter.username %></a></li>
+            </div>
+            <br>
+            <br>
+            <br>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</li>

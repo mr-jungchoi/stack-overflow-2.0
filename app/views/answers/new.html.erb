@@ -1,0 +1,10 @@
+<div class="new-answer">
+  <h1>Your answer to:</h1>
+  <p><%= @question.title %></p>
+
+  <form id="<%= @question.id %>" class="new-answer-form" action="/questions/<%= @question.id %>/answers" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <textarea name="answer[text]" rows="8" cols="80"></textarea>
+    <input class="btn btn-primary" type="submit" value="Submit">
+  </form>
+</div>
