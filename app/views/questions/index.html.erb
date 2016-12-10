@@ -1,27 +1,7 @@
-
-
 <h1>Questions</h1>
 
-
-<nav>
-
-</nav>
-
-
-<div class="container">
-  <ul>
-  <% @questions.each do |question| %>
-
-  <td>
-    <div class="question">
-
-      <a href='/questions/<%= question.id %>'><span class="question-title"><%= question.title %></span></a>
-      <p> asked by
-        <a href='<%= "/users/#{question.author.id}" %>'><span class="author-name"><%= question.author.username %></a> 
-      </p>
-    </div>
-  </td>
-    <br>
-  <% end %>
-  </ul>
-</div>
+<section>
+  <div class="container">
+    <%= react_component('QuestionView', questions: Question.all.as_json(include: :author), prerender:true) %>
+  </div>
+</section>

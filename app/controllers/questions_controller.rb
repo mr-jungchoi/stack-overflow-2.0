@@ -1,6 +1,10 @@
 class QuestionsController < ApplicationController
   def index
     @questions = Question.all
+    render do |format|
+      format json: @questions, status: 200
+      format html: index.html.erb
+    end
   end
 
   def new
